@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import DAO.Dao;
 import Model.Postinumero;
 
+//postinumeroluokka joka on jatkettu Dao luokasta t‰‰ll‰ on metodeja jolla voidaan lis‰‰, poistaa ja hallinoida tietokantaa
+
 public class Dao_Postinumero extends Dao {
 	
 	public ArrayList<Postinumero> listaaKaikki() throws Exception{

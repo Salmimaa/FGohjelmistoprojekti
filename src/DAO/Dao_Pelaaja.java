@@ -2,6 +2,8 @@ package DAO;
 
 import Model.Pelaaja;
 
+
+//pelaaja luokka joka on jatkettu Dao luokasta t‰‰ll‰ on metodeja jolla voidaan lis‰‰, poistaa ja hallinoida tietokantaa
 public class Dao_Pelaaja extends Dao {
 	
 	public boolean lisaaPelaaja(Pelaaja pelaaja){
@@ -12,8 +14,8 @@ public class Dao_Pelaaja extends Dao {
 			stmtPrep=con.prepareStatement(sql); 
 			stmtPrep.setString(1, pelaaja.getEtunimi());
 			stmtPrep.setString(2, pelaaja.getSukunimi());
-			stmtPrep.setString(4, pelaaja.getKayttajanimi());
-			stmtPrep.setString(6, pelaaja.getSalasana());
+			stmtPrep.setString(3, pelaaja.getKayttajanimi());
+			stmtPrep.setString(4, pelaaja.getSalasana());
 			stmtPrep.executeUpdate();
 	        con.close();
 		} catch (Exception e) {				

@@ -1,5 +1,6 @@
 package Model;
 
+
 public class Heitto {
 	
 	private int heittoId, lkm;

@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+
+//Dao luokalla otetaan yhteys mariaDB tietokantaan
 public class Dao {
 	
 	public Connection con=null;
