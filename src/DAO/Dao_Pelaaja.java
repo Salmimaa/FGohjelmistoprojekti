@@ -47,4 +47,28 @@ public class Dao_Pelaaja extends Dao {
 		}			
 		return pelaaja;
 	}
+	
+	public Pelaaja haeKayttaja(String kayttaja) throws Exception{
+		Pelaaja pelaaja = null;		
+		sql = "SELECT * FROM FG_Pelaajat WHERE Kayttajanimi=?"; 		
+		con=yhdista();
+		if(con!=null){ 
+			stmtPrep = con.prepareStatement(sql); 
+			stmtPrep.setString(1, kayttaja);			
+    		rs = stmtPrep.executeQuery();  
+			if(rs!=null){ 						
+				while(rs.next()){
+					pelaaja = new Pelaaja();
+					pelaaja.setPelaajaId(rs.getInt("Pelaaja_id"));
+					pelaaja.setEtunimi(rs.getString("Etunimi"));
+					pelaaja.setSukunimi(rs.getString("Sukunimi"));
+					pelaaja.setKayttajanimi(rs.getString("Kayttajanimi"));
+					pelaaja.setSalasana(rs.getString("Salasana"));
+				}					
+			}
+			con.close();
+		}			
+		return pelaaja;
+	}
+	
 }

@@ -3,8 +3,9 @@
  <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <a class="navbar-brand" onclick="document.location='index.jsp'">FrisbeeGolf</a>
-      <a class="btn btn-primary" onclick="document.location='kirjauduUlos.jsp'">Kirjaudu Ulos</a>
+      <a class="navbar-brand" onclick="document.location='index1.jsp'">FrisbeeGolf</a>
+  
+      <a class="btn btn-primary" onclick="document.location='index.jsp'">Kirjaudu Ulos</a>
  	</div>
   </nav>
 <!-- Masthead -->
@@ -198,7 +199,9 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
 
+</script>
 
 </body>
 </html>

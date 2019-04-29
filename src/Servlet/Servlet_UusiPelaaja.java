@@ -26,20 +26,27 @@ public class Servlet_UusiPelaaja extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Pelaaja pelaaja = new Pelaaja();
-		pelaaja.setEtunimi(request.getParameter("etunimi"));
-		pelaaja.setSukunimi(request.getParameter("sukunimi"));
-		pelaaja.setKayttajanimi(request.getParameter("kayttajanimi"));
-		pelaaja.setSalasana(request.getParameter("salasana"));
-		
 		Dao_Pelaaja dao = new Dao_Pelaaja();
-		if(dao.lisaaPelaaja(pelaaja)){
-			response.sendRedirect("kirjaudu.jsp?ok=1");
-			
-		}else{
-			response.sendRedirect("rekisteroidy.jsp?ok=0");
+		try {
+
+				Pelaaja pelaaja = new Pelaaja();
+				pelaaja.setEtunimi(request.getParameter("etunimi"));
+				pelaaja.setSukunimi(request.getParameter("sukunimi"));
+				pelaaja.setKayttajanimi(request.getParameter("kayttajanimi"));
+				pelaaja.setSalasana(request.getParameter("salasana"));
+				
+				
+				if(dao.lisaaPelaaja(pelaaja)){
+					response.sendRedirect("kirjaudu.jsp?ok=1");
+					
+				}else{
+					response.sendRedirect("rekisteroidy.jsp?ok=0");
+				}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 		doGet(request, response);
 		
 	}

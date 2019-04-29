@@ -4,8 +4,10 @@
     <div class="container">
       <a class="navbar-brand" onclick="document.location='index.jsp'">FrisbeeGolf</a>
     
-      <a class="btn btn-primary" onclick="document.location='kirjaudu.jsp'">Kirjaudu</a>
-      <a class="btn btn-primary" onclick="document.location='rekisteroidy.jsp'">Rekisteröidy</a>
+      <div class="left">
+      		<a class="btn btn-primary" onclick="document.location='kirjaudu.jsp'">Kirjaudu</a>
+      		<a class="btn btn-primary" onclick="document.location='rekisteroidy.jsp'">Rekisteröidy</a>
+ 		</div>
  
     </div>
   </nav>
@@ -23,6 +25,7 @@
                 <input name="etunimi" id="etunimi" type="text" class="form-control form-control-lg" placeholder="Etunimi">
                 <input name="sukunimi" id="sukunimi" type="text" class="form-control form-control-lg" placeholder="Sukunimi">
                 <input name="kayttajanimi" id="kayttajanimi" type="text" class="form-control form-control-lg" placeholder="Käyttäjänimi">
+                <span id="kayttajainfo"></span>
                 <input name="salasana" id="salasana" type="password" class="form-control form-control-lg" placeholder="Salasana">
                 <button type="submit" class="btn btn-block btn-lg btn-primary">Rekisteröidy!</button>
               </div>
@@ -39,6 +42,64 @@
       </div>
     </div>
   </header>
-
+<script>
+$(document).ready(function(){
+	
+	$("#kayttajanimi").blur(function(){
+	    $.ajax({url: "Servlet_Kayttaja_Ajax?kayttajanimi="+$("#kayttajanimi").val(), success: function(result){
+	        $("#kayttajainfo").html(result);
+	    }});
+	});
+	
+	$("#rekisteroidy").validate({						
+		rules: {
+			etunimi:  {
+				required: true,
+				minlength: 2				
+			},	
+			sukunimi:  {
+				required: true,
+				minlength: 2				
+			},
+			
+			kayttajanimi:  {
+				required: true,
+				minlength: 2
+			},
+			salasana:  {
+				required: true,
+				minlength: 4,
+				
+			}			
+		},
+		messages: {
+			etunimi: {     
+				required: "Puuttuu",
+				minlength: "Liian lyhyt"			
+			},
+			sukunimi: {
+				required: "Puuttuu",
+				minlength: "Liian lyhyt"
+			},
+			kayttajanimi: {
+				required: "Puuttuu",
+				minlength: "Liian lyhyt"
+			},
+			salasana: {
+				required: "Puuttuu",
+				minlength: "Liian lyhyt",
+			}	
+		},			
+		submitHandler: function (form) {	
+			if ($("#kayttajainfo").html()!=""){
+				$("#kayttajainfo").html("<label class='error'>Puuttuu</label>");
+			}else{
+				
+				document.forms["rekisteroidy"].submit();
+			}			
+		}		
+	});   
+});
+</script>
 </body>
 </html>

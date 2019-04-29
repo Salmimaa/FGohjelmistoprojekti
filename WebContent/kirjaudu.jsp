@@ -4,8 +4,10 @@
     <div class="container">
       <a class="navbar-brand" onclick="document.location='index.jsp'">FrisbeeGolf</a>
     
-      <a class="btn btn-primary" onclick="document.location='kirjaudu.jsp'">Kirjaudu</a>
-      <a class="btn btn-primary" onclick="document.location='rekisteroidy.jsp'">Rekisteröidy</a>
+     <div class="left">
+      		<a class="btn btn-primary" onclick="document.location='kirjaudu.jsp'">Kirjaudu</a>
+      		<a class="btn btn-primary" onclick="document.location='rekisteroidy.jsp'">Rekisteröidy</a>
+ 		</div>
  
     </div>
   </nav>
@@ -29,6 +31,11 @@
 			if(request.getParameter("ok")!=null){
 				if(request.getParameter("ok").equals("1")){
 					out.print("Rekisteröinti Onnistui!");
+				}
+			}
+       		if(request.getParameter("salasana")!=null){
+				if(request.getParameter("salasana").equals("0")){
+					out.print("Väärä salasana!");
 				}
 			}
 			%>
