@@ -94,5 +94,23 @@ public class Dao_Pelaaja extends Dao {
 		}			
 		return pelaaja;
 	}
-	
+	public boolean muutaPelaaja(Pelaaja pelaaja){
+		boolean paluuArvo=true;
+		sql="UPDATE FG_Pelaajat SET Etunimi = ?, Sukunimi = ?, Salasana = ? WHERE Pelaaja_id = ?";	
+		System.out.print(pelaaja);
+		try {
+			con = yhdista();
+			stmtPrep=con.prepareStatement(sql); 
+			stmtPrep.setString(1, pelaaja.getEtunimi());
+			stmtPrep.setString(2, pelaaja.getSukunimi());
+			stmtPrep.setString(3, pelaaja.getSalasana());
+			stmtPrep.setInt(4, pelaaja.getPelaajaId());
+			stmtPrep.executeUpdate();
+	        con.close();
+		} catch (Exception e) {				
+			e.printStackTrace();
+			paluuArvo=false;
+		}				
+		return paluuArvo;
+	}
 }
