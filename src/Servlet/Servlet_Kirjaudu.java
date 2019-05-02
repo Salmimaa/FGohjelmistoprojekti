@@ -24,11 +24,13 @@ public class Servlet_Kirjaudu extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
-		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		if(request.getParameter("out")!=null){
+			HttpSession session = request.getSession();
+			session.removeAttribute("name");
+			session.removeAttribute("id");
+			response.sendRedirect("index.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,11 +42,6 @@ public class Servlet_Kirjaudu extends HttpServlet {
 			Pelaaja pelaaja = dao.haeKayttaja(kayttaja, salasana);
 			session.setAttribute("id", pelaaja.getPelaajaId());	
 			session.setAttribute("name", pelaaja.getEtunimi() + " " + pelaaja.getSukunimi());
-			System.out.print(pelaaja.getPelaajaId());
-			System.out.print(pelaaja.getEtunimi());
-			System.out.print(pelaaja.getSukunimi());
-			
-			
 			String jsp = "/index1.jsp"; 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 			dispatcher.forward(request, response);			   				

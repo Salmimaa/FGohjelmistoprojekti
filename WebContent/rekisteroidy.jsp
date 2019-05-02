@@ -5,8 +5,8 @@
       <a class="navbar-brand" onclick="document.location='index.jsp'">FrisbeeGolf</a>
     
       <div class="left">
-      		<a class="btn btn-primary" onclick="document.location='kirjaudu.jsp'">Kirjaudu</a>
-      		<a class="btn btn-primary" onclick="document.location='rekisteroidy.jsp'">Rekisteröidy</a>
+      		<a class="btn btn-primary text-white" onclick="document.location='kirjaudu.jsp'">Kirjaudu</a>
+      		<a class="btn btn-primary text-white" onclick="document.location='rekisteroidy.jsp'">Rekisteröidy</a>
  		</div>
  
     </div>
