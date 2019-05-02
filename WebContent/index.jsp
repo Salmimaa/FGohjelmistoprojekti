@@ -1,12 +1,12 @@
 <%@include file="header.jsp" %>
-
+<%@ page language="java" session="true" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%! @SuppressWarnings("unchecked") %>
  <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" onclick="document.location='index.jsp'">FrisbeeGolf</a>
-      <div data-role="header">			
-			<h1 id="kirjautuneena"></h1>
-		</div>
+      
     	<div class="left">
       		<a class="btn btn-primary" onclick="document.location='kirjaudu.jsp'">Kirjaudu</a>
       		<a class="btn btn-primary" onclick="document.location='rekisteroidy.jsp'">Rekisteröidy</a>

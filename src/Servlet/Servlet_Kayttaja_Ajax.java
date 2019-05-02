@@ -26,7 +26,7 @@ public class Servlet_Kayttaja_Ajax extends HttpServlet {
 		String kayttaja = request.getParameter("kayttajanimi");
 		Dao_Pelaaja dao = new Dao_Pelaaja();
 		try {
-			if(dao.haeKayttaja(kayttaja) != null) {
+			if(dao.haeKayttaja1(kayttaja) != null) {
 				PrintWriter out = response.getWriter();
 			    response.setContentType("text/html"); 		
 			    out.println("Käyttäjänimi on jo käytössä!");		    
