@@ -1,6 +1,10 @@
 package DAO;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import Model.Pelaaja;
 import Model.Postinumero;
 import Model.Rata;
 
@@ -92,6 +96,30 @@ public class Dao_Rata extends Dao{
 			con.close();
 		}			
 		return radat;
+	}
+	
+	public int lisaaRata(Rata rata){
+		sql="INSERT INTO FG_Radat(Radannimi, Osoite, Postinumero, Vaylanmaara) VALUES(?,?,?,?)";
+		Postinumero posti = rata.getPostinumero();
+		try {
+			con = yhdista();
+			stmtPrep=con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); 
+			stmtPrep.setString(1, rata.getRadanNimi());
+			stmtPrep.setString(2, rata.getOsoite());
+			stmtPrep.setString(3, posti.getPostinumero());
+			stmtPrep.setInt(4, rata.getVaylanmaara());
+			stmtPrep.executeUpdate();
+	        con.close();
+	        ResultSet rs = stmtPrep.getGeneratedKeys();
+	        if(rs.next()) {
+	        	int lastId = rs.getInt(1);
+	        	return lastId;
+	        }
+		} catch (Exception e) {				
+			e.printStackTrace();
+			
+		}				
+		return 0;
 	}
 
 }

@@ -21,6 +21,3 @@
 
 </head>
 <body>
-<script>
-
-</script>

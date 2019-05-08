@@ -40,12 +40,15 @@ public class Servlet_Kirjaudu extends HttpServlet {
 		Dao_Pelaaja dao = new Dao_Pelaaja();
 		try {
 			Pelaaja pelaaja = dao.haeKayttaja(kayttaja, salasana);
+			if(pelaaja != null) {
 			session.setAttribute("id", pelaaja.getPelaajaId());	
 			session.setAttribute("name", pelaaja.getEtunimi() + " " + pelaaja.getSukunimi());
 			String jsp = "/index1.jsp"; 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
-			dispatcher.forward(request, response);			   				
-
+			dispatcher.forward(request, response);	
+			}else {
+				response.sendRedirect("kirjaudu.jsp?salasana=0");
+			}
 			
 		} catch (Exception e) {			
 			e.printStackTrace();

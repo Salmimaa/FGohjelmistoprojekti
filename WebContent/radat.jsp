@@ -10,7 +10,6 @@
       <a class="navbar-brand" onclick="document.location='index1.jsp'">FrisbeeGolf</a>
             <%
 out.print(session.getAttribute("name"));
-            out.print(session.getAttribute("id"));
 %>
 <div class="left">
       <a class="btn btn-primary text-white" href="Servlet_Kirjaudu?out=1">Kirjaudu Ulos</a>
