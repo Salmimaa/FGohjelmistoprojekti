@@ -40,6 +40,12 @@ out.print(session.getAttribute("name"));
 					out.print("Tallentaminen epäonnistui");
 				}
 			}
+       		if(request.getParameter("vaylaok")!=null){
+				if(request.getParameter("vaylaok").equals("0")){
+					out.print("Väylien Tallentaminen epäonnistui ota yhteys IT tukeen");
+				}
+			}
+
 			%>
           </form>
         </div>

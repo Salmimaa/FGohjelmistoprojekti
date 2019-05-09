@@ -32,18 +32,19 @@ out.print(session.getAttribute("name"));
               
               
               	<%
+              		int count = 0;
               		Rata rata = (Rata)request.getAttribute("rata1");
               	 	int vaylat = rata.getVaylanmaara();
 					for(int i=1;i<=vaylat;i++){
 	
 							out.print("<input name='vaylanro"+i+"' id='vaylanro"+i+"' type='text' class='form-control form-control-lg' placeholder='Väylä nro"+i+"'>");
-					
+							count = count + 1;
 						
 				}	
 		
 		%>
-              
-              
+              	<input type="hidden" name="count" value="<%out.print(count);%>">
+              	<input type="hidden" name="rataid" value="<%out.print(rata.getRataId());%>">
                 <button type="submit" class="btn btn-block btn-lg btn-primary">Tallenna!</button>
               </div>
        		</div>
