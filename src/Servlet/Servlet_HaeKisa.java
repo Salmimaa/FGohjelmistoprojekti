@@ -10,36 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.Dao_Rata;
-import Model.Rata;
+import DAO.Dao_Kisa;
+import Model.Kisa;
 
-@WebServlet("/Servlet_HaeRata")
-public class Servlet_HaeRata extends HttpServlet {
+
+@WebServlet("/Servlet_HaeKisa")
+public class Servlet_HaeKisa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-    public Servlet_HaeRata() {
+ 
+    public Servlet_HaeKisa() {
         super();
-       
+      
     }
-
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Rata> radat = new ArrayList<Rata>();
-		String hakusana = request.getParameter("hakusana");
-		Dao_Rata dao = new Dao_Rata();
+		Dao_Kisa dao = new Dao_Kisa();
 		try {
-			radat = dao.haeRadat(hakusana);
-			request.setAttribute("radat", radat);		
-			String jsp = "/radat.jsp"; 
+			ArrayList<Kisa> kisat = dao.listaaKisat();
+			request.setAttribute("kisat", kisat);		
+			String jsp = "/kisat.jsp"; 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 			dispatcher.forward(request, response);			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	

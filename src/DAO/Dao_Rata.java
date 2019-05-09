@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Model.Pelaaja;
 import Model.Postinumero;
 import Model.Rata;
 

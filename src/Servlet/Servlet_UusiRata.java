@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.Dao_Postinumero;
 import DAO.Dao_Rata;
-import Model.Pelaaja;
 import Model.Postinumero;
 import Model.Rata;
 

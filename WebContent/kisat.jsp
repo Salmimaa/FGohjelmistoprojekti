@@ -1,5 +1,7 @@
 <%@include file="header.jsp" %>
 <%@ page import="Model.Rata"%>  
+<%@ page import="Model.Kisa"%> 
+<%@ page import = "java.io.*,java.util.*, javax.servlet.*" %>
 <%@ page import="Model.Postinumero"%>  
 <%@ page import="java.util.ArrayList"%>  
 <%! @SuppressWarnings("unchecked") %>
@@ -21,31 +23,31 @@ out.print(session.getAttribute("name"));
 <fieldset id="haku">
 	<legend>Hae:</legend>	
 	<input type="text" name="hakuSana" id="hakuSana" value="">
-	<input type="button" value="Etsi" id="haeRata">
+	<input type="button" value="Etsi" id="haeKisa">
 </fieldset>
 <table id="info" class="table">
 		<thead>
 			<tr>
-				<th>Radan nimi:</th>
-				<th>Osoite:</th>
-				<th>V‰yl‰m‰‰r‰:</th>	
+				<th>Kisan nimi:</th>
+				<th>Radalla:</th>
+				<th>P‰iv‰m‰‰r‰:</th>	
 				<th></th>			
 			</tr>
 		</thead>
 		<tbody>
 		<%
-		if(request.getAttribute("radat")!=null){	
-			ArrayList<Rata> radat = (ArrayList<Rata>)request.getAttribute("radat");
-			Postinumero postinumero = new Postinumero();
+		if(request.getAttribute("kisat")!=null){	
+			ArrayList<Kisa> kisat = (ArrayList<Kisa>)request.getAttribute("kisat");
 			
-			for(int i=0;i<radat.size();i++){
-				postinumero = radat.get(i).getPostinumero();
-				String posti = postinumero.getPostinumero();
-				String paikka = postinumero.getPostitoimipaikka();
+			for(int i=0;i<kisat.size();i++){
+				Rata rata = new Rata();
+				rata = kisat.get(i).getRata();
+				String kisa = rata.getRadanNimi();
 				out.print("\n<tr>");
-				out.print("<td class='rata_id' id='id_"+radat.get(i).getRataId()+"'><u>" + radat.get(i).getRadanNimi() + "</u></td>");
-				out.print("<td>" + radat.get(i).getOsoite() +" "+ posti +" "+ paikka +"</td>");
-				out.print("<td>" + radat.get(i).getVaylanmaara()+ "</td>");	
+				out.print("<td class='kisa_id' id='id_"+kisat.get(i).getKisaId()+"'><u>" + kisat.get(i).getKisaNimi() + "</u></td>");
+				out.print("<td>" + kisa +"</td>");
+				out.print("<td>" + kisat.get(i).getAika()+ "</td>");
+				
 				out.print("<td>");
 				out.print("</td>");
 				out.print("</tr>");
@@ -54,19 +56,19 @@ out.print(session.getAttribute("name"));
 		%>
 		</tbody>
 	</table>
-<input type="button" value="Lis‰‰ Rata" id="lisaaRata" class="btn btn-primary">
+<input type="button" value="Lis‰‰ Kisa" id="lisaaKisa" class="btn btn-primary">
 </header>
 </body>
 </html>
 <script>
-$("#haeRata").click(function(){
-	document.location=encodeURI("Servlet_HaeRata?hakusana=" + $("#hakuSana").val());	
+$("#haeKisa").click(function(){
+	document.location=encodeURI("Servlet_HaeKisat?hakusana=" + $("#hakuSana").val());	
 });
-$(".muokkaa").click(function(){	
-	document.location="Servlet_MuokkaaRata?Rata_id=" + $(this)[0].id;	
+$(".osallistu").click(function(){	
+	document.location="Servlet_Osallistu?kisa_id=" + $(this)[0].id;	
 });
-$("#lisaaRata").click(function(){	
-	document.location="Servlet_UusiRata";	
+$("#lisaaKisa").click(function(){	
+	document.location="Servlet_UusiKisa";	
 });
 $("#muokkaa").click(function(){	
 	document.location="Servlet_MuokkaaPelaaja?pelaaja=" + $(session.getAttribute("id"));	

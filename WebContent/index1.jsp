@@ -23,16 +23,15 @@ out.print(session.getAttribute("name"));
           <h1 class="mb-5">Etsi kisoja ympäri suomen!</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
+         <fieldset id="hakukisa">
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input id="haku" type="text" class="form-control form-control-lg" placeholder="Hakusana...">
               </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Hae!</button>
-              </div>
+              
+                <input type="button" name="haeKisa" id="haeKisa" class="btn btn-block btn-lg btn-primary" value="Etsi"></input>
+            
             </div>
-          </form>
+         </fieldset>
         </div>
       </div>
     </div>
@@ -41,7 +40,7 @@ out.print(session.getAttribute("name"));
   		<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
         	<fieldset id="haku">
 				<legend >Hae ratoja:</legend>	
-				<input type="text" name="hakuSana" id="hakuSana" value="" class="form-control form-control-lg" placeholder="Hakusana...">
+				<input type="text" name="hakuSana1" id="hakuSana1" value="" class="form-control form-control-lg" placeholder="Hakusana...">
 				<input type="button" value="Etsi" id="haeRata" class="btn btn-primary text-white">
 				<input type="button" value="Kaikki" id="radat" class="btn btn-primary text-white">
 			</fieldset>
@@ -109,6 +108,9 @@ $("#haeRata").click(function(){
 	document.location=encodeURI("Servlet_HaeRata?hakusana=" + $("#hakuSana").val());	
 });
 
+$("#haeKisa").click(function(){
+	document.location=encodeURI("Servlet_HaeKisa?hakusana1=" + $("#hakuSana1").val());	
+});
 	
 </script>
 
