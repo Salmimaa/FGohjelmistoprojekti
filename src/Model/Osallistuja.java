@@ -3,19 +3,19 @@ package Model;
 public class Osallistuja {
 
 		private int osallistujaId;
-		private Pelaaja pelaajaId;
-		private Kisa kisaId;
+		private Pelaaja pelaaja;
+		private Kisa kisa;
 
 		public Osallistuja() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
 
-		public Osallistuja(int osallistujaId, Pelaaja pelaajaId, Kisa kisaId) {
+		public Osallistuja(int osallistujaId, Pelaaja pelaaja, Kisa kisa) {
 			super();
 			this.osallistujaId = osallistujaId;
-			this.pelaajaId = pelaajaId;
-			this.kisaId = kisaId;
+			this.pelaaja = pelaaja;
+			this.kisa = kisa;
 		}
 
 		public int getOsallistujaId() {
@@ -26,25 +26,25 @@ public class Osallistuja {
 			this.osallistujaId = osallistujaId;
 		}
 
-		public Pelaaja getPelaajaId() {
-			return pelaajaId;
+		public Pelaaja getPelaaja() {
+			return pelaaja;
 		}
 
-		public void setPelaajaId(Pelaaja pelaajaId) {
-			this.pelaajaId = pelaajaId;
+		public void setPelaaja(Pelaaja pelaaja) {
+			this.pelaaja = pelaaja;
 		}
 
-		public Kisa getKisaId() {
-			return kisaId;
+		public Kisa getKisa() {
+			return kisa;
 		}
 
-		public void setKisaId(Kisa kisaId) {
-			this.kisaId = kisaId;
+		public void setKisa(Kisa kisa) {
+			this.kisa = kisa;
 		}
 
 		@Override
 		public String toString() {
-			return "Osallistuja [osallistujaId=" + osallistujaId + ", pelaajaId=" + pelaajaId + ", kisaId=" + kisaId
+			return "Osallistuja [osallistuja=" + osallistujaId + ", pelaaja=" + pelaaja + ", kisa=" + kisa
 					+ "]";
 		}
 		

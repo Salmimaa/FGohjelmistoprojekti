@@ -1,4 +1,11 @@
 <%@include file="header.jsp" %>
+<%@ page import="Model.Rata"%>  
+<%@ page import="Model.Kisa"%> 
+<%@ page import="Model.Pelaaja"%> 
+<%@ page import="Model.Osallistuja"%>
+<%@ page import = "java.io.*,java.util.*, javax.servlet.*" %>
+<%@ page import="Model.Postinumero"%>  
+<%@ page import="java.util.ArrayList"%>  
 
 <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
@@ -15,27 +22,54 @@ out.print(session.getAttribute("name"));
  	</div>
   </nav>
 <!-- Masthead -->
-  <header class="masthead text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5"></h1>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-         <fieldset id="hakukisa">
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-              </div>
-              
-                <input type="button" name="haeKisa" id="haeKisa" class="btn btn-block btn-lg btn-primary" value="Etsi"></input>
-            
-            </div>
-         </fieldset>
-        </div>
-      </div>
-    </div>
-  </header>
+  <header class="masthead">
+<fieldset id="info">
+<% 
+Kisa kisa = new Kisa();
+kisa = (Kisa)request.getAttribute("kisa"); 
+Rata rata = new Rata();
+rata = kisa.getRata();
+%>
+	<legend>Kisa: <%out.print(kisa.getKisaNimi()+" "+kisa.getAika()+" "+rata.getRadanNimi());%></legend>	
+</fieldset>
+<h2>Osallistujat</h2>
+<table id="info" class="table">
+		<thead>
+			<tr>
+				<th>Käyttäjä:</th>
+				<th>Nimi:</th>
+				<th></th>			
+			</tr>
+		</thead>
+		<tbody>
+		<%
+		if(request.getAttribute("osallistujat")!=null){	
+			ArrayList<Osallistuja> osallistujat = (ArrayList<Osallistuja>)request.getAttribute("osallistujat");
+			
+			for(Osallistuja osa : osallistujat){
+				Pelaaja pelaaja = osa.getPelaaja();
+				out.print("\n<tr>");
+				out.print("<td class='pelaaja' id='"+pelaaja.getPelaajaId()+"'><u>" + pelaaja.getKayttajanimi() + "</u></td>");
+				out.print("<td>" + pelaaja.getEtunimi() +" "+ pelaaja.getSukunimi() +"</td>");
+				out.print("<td>");
+				out.print("</td>");
+				out.print("</tr>");
+			}	
+		}
+		
+		
+		%>
+		</tbody>
+	</table>
+	<a class="btn btn-primary text-white" href="Servlet_Osallistu?pelaaja=<%out.print(session.getAttribute("id"));%>&kisa=<% out.print(kisa.getKisaId()); %>">Osallistu</a>
+	<%
+	if(request.getParameter("ok")!=null){
+			if(request.getParameter("ok").equals("0")){
+				out.print("Olet jo kisassa!!");
+			}
+		}
+	%>
+</header>
 
 </body>
 </html>

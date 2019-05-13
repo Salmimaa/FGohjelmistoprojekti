@@ -1,12 +1,9 @@
 package DAO;
 
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 
 import Model.Kisa;
-import Model.Postinumero;
 import Model.Rata;
 
 
@@ -79,5 +76,29 @@ public class Dao_Kisa extends Dao{
 			
 		}				
 		return true;
+	}
+	
+	public Kisa haeKisa(int id) throws Exception{
+		Dao_Rata daorata = new Dao_Rata();
+		Kisa kisa = new Kisa();
+		sql = "SELECT * FROM FG_Kisat WHERE Kisa_id = ?"; 		
+		con=yhdista();
+		if(con!=null){ 
+			stmtPrep = con.prepareStatement(sql);
+			stmtPrep.setInt(1, id);
+			rs = stmtPrep.executeQuery();   
+			if(rs!=null){ 							
+				while(rs.next()){
+					Rata rata = new Rata();
+					rata = daorata.haeRata(rs.getInt("Rata_id"));
+					kisa.setKisaId(rs.getInt("Kisa_id"));
+					kisa.setKisaNimi(rs.getString("Kisannimi"));
+					kisa.setRata(rata);
+					kisa.setAika(rs.getDate("Alkuaika"));
+				}					
+			}
+			con.close();
+		}			
+		return kisa;
 	}
 }

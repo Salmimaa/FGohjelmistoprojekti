@@ -48,7 +48,7 @@ out.print(session.getAttribute("name"));
 				out.print("<td>" + kisa +"</td>");
 				out.print("<td>" + kisat.get(i).getAika()+ "</td>");
 				out.print("<td>");
-				out.print("<a href='Servlet_Osallistu?kisa="+kisat.get(i).getKisaId()+"' class='btn btn-primary text-white'>Info</a>");
+				out.print("<a href='Servlet_Kisainfo?kisa="+kisat.get(i).getKisaId()+"' class='btn btn-primary text-white'>Info</a>");
 				out.print("</td>");
 				out.print("</tr>");
 			}	

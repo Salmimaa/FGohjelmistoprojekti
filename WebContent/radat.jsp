@@ -54,7 +54,7 @@ out.print(session.getAttribute("name"));
 		%>
 		</tbody>
 	</table>
-<input type="button" value="Lisää Rata" id="lisaaRata" class="btn btn-primary">
+<input type="button" value="Lisää Rata" id="lisaaRata" class="btn btn-primary text-white">
 </header>
 </body>
 </html>
