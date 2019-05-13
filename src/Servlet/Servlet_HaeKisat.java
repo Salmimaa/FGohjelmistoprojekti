@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.Dao_Kisa;
-import DAO.Dao_Rata;
 import Model.Kisa;
-import Model.Rata;
+
 
 @WebServlet("/Servlet_HaeKisat")
 public class Servlet_HaeKisat extends HttpServlet {

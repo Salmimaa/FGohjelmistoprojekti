@@ -1,5 +1,8 @@
 package DAO;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import Model.Kisa;
@@ -57,5 +60,24 @@ public class Dao_Kisa extends Dao{
 			con.close();
 		}			
 		return kisat;
+	}
+	
+	public boolean lisaaKisa(Kisa kisa){
+		sql="INSERT INTO FG_Kisat(Kisannimi, Rata_id, Alkuaika) VALUES(?,?,?)";
+		Rata rata = kisa.getRata();
+		try {
+			con = yhdista();
+			stmtPrep=con.prepareStatement(sql); 
+			stmtPrep.setString(1, kisa.getKisaNimi());
+			stmtPrep.setInt(2, rata.getRataId());
+			stmtPrep.setDate(3, new java.sql.Date(kisa.getAika().getTime()));
+			stmtPrep.executeUpdate();
+	        con.close();
+		} catch (Exception e) {				
+			e.printStackTrace();
+			return false;
+			
+		}				
+		return true;
 	}
 }

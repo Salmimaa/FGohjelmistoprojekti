@@ -47,8 +47,8 @@ out.print(session.getAttribute("name"));
 				out.print("<td class='kisa_id' id='id_"+kisat.get(i).getKisaId()+"'><u>" + kisat.get(i).getKisaNimi() + "</u></td>");
 				out.print("<td>" + kisa +"</td>");
 				out.print("<td>" + kisat.get(i).getAika()+ "</td>");
-				
 				out.print("<td>");
+				out.print("<a href='Servlet_Osallistu?kisa="+kisat.get(i).getKisaId()+"' class='btn btn-primary text-white'>Info</a>");
 				out.print("</td>");
 				out.print("</tr>");
 			}	
@@ -57,6 +57,19 @@ out.print(session.getAttribute("name"));
 		</tbody>
 	</table>
 <input type="button" value="Lisää Kisa" id="lisaaKisa" class="btn btn-primary">
+
+<%
+			if(request.getParameter("ok")!=null){
+				if(request.getParameter("ok").equals("1")){
+					out.print("Rekisteröinti Onnistui!");
+				}
+			}
+       		if(request.getParameter("salasana")!=null){
+				if(request.getParameter("salasana").equals("0")){
+					out.print("Väärä salasana!");
+				}
+			}
+			%>
 </header>
 </body>
 </html>
@@ -64,9 +77,7 @@ out.print(session.getAttribute("name"));
 $("#haeKisa").click(function(){
 	document.location=encodeURI("Servlet_HaeKisat?hakusana=" + $("#hakuSana").val());	
 });
-$(".osallistu").click(function(){	
-	document.location="Servlet_Osallistu?kisa_id=" + $(this)[0].id;	
-});
+
 $("#lisaaKisa").click(function(){	
 	document.location="Servlet_UusiKisa";	
 });
