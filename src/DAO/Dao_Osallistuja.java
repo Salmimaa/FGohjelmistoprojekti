@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import Model.Kisa;
 import Model.Osallistuja;
 import Model.Pelaaja;
-import Model.Rata;
 
 public class Dao_Osallistuja extends Dao{
 	
@@ -81,6 +80,63 @@ public class Dao_Osallistuja extends Dao{
 		}
 		  
 		return paluuArvo;
+	}
+	
+	public Osallistuja osallistujaPelaa(Pelaaja pelaaja, Kisa kisa){
+		Osallistuja osallistuja = new Osallistuja();
+		sql="SELECT * FROM FG_Osallistujat WHERE Pelaaja_id = ? AND Kisa_id = ?";						  
+		try {
+			con = yhdista();
+			stmtPrep=con.prepareStatement(sql); 
+			stmtPrep.setInt(1, pelaaja.getPelaajaId());
+			stmtPrep.setInt(2, kisa.getKisaId());
+			rs = stmtPrep.executeQuery();  
+	        if(rs!=null){ 						
+				while(rs.next()){
+					osallistuja.setKisa(kisa);
+					osallistuja.setPelaaja(pelaaja);
+					osallistuja.setOsallistujaId(rs.getInt("Osallistuja_id"));
+				}
+	        }else {
+	        	
+	        }
+	       con.close();
+		} catch (Exception e) {				
+			e.printStackTrace();
+			
+		}
+		  
+		return osallistuja;
+	}
+	
+	public Osallistuja haeOsallistuja(int osallistujaid){
+		Osallistuja osallistuja = new Osallistuja();
+		sql="SELECT * FROM FG_Osallistujat WHERE Osallistuja_id = ?";						  
+		try {
+			con = yhdista();
+			stmtPrep=con.prepareStatement(sql); 
+			stmtPrep.setInt(1, osallistujaid);
+			rs = stmtPrep.executeQuery();  
+	        if(rs!=null){ 						
+				while(rs.next()){
+					Dao_Kisa daokisa = new Dao_Kisa();
+					Dao_Pelaaja daopel = new Dao_Pelaaja();
+					Pelaaja pelaaja = daopel.haePelaaja(rs.getInt("Pelaaja_id"));
+					Kisa kisa = daokisa.haeKisa(rs.getInt("Kisa_id"));
+					osallistuja.setOsallistujaId(osallistujaid);
+					osallistuja.setKisa(kisa);
+					osallistuja.setPelaaja(pelaaja);
+				}
+	        }else {
+	        	
+	        }
+	       con.close();
+		} catch (Exception e) {				
+			e.printStackTrace();
+			
+		}
+		  
+		return osallistuja;
 	}
 	
 	

@@ -3,19 +3,19 @@ package Model;
 public class Ratavayla {
 	
 	private int ratavaylaId;
-	private Rata rataId;
-	private Vayla vaylaId;
+	private Rata rata;
+	private Vayla vayla;
 
 	public Ratavayla() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ratavayla(int ratavaylaId, Rata rataId, Vayla vaylaId) {
+	public Ratavayla(int ratavaylaId, Rata rata, Vayla vayla) {
 		super();
 		this.ratavaylaId = ratavaylaId;
-		this.rataId = rataId;
-		this.vaylaId = vaylaId;
+		this.rata = rata;
+		this.vayla = vayla;
 	}
 
 	public int getRatavaylaId() {
@@ -26,25 +26,25 @@ public class Ratavayla {
 		this.ratavaylaId = ratavaylaId;
 	}
 
-	public Rata getRataId() {
-		return rataId;
+	public Rata getRata() {
+		return rata;
 	}
 
-	public void setRataId(Rata rataId) {
-		this.rataId = rataId;
+	public void setRata(Rata rata) {
+		this.rata = rata;
 	}
 
-	public Vayla getVaylaId() {
-		return vaylaId;
+	public Vayla getVayla() {
+		return vayla;
 	}
 
-	public void setVaylaId(Vayla vaylaId) {
-		this.vaylaId = vaylaId;
+	public void setVayla(Vayla vayla) {
+		this.vayla = vayla;
 	}
 
 	@Override
 	public String toString() {
-		return "Ratavayla [ratavaylaId=" + ratavaylaId + ", rataId=" + rataId + ", vaylaId=" + vaylaId + "]";
+		return "Ratavayla [ratavaylaId=" + ratavaylaId + ", rata=" + rata + ", vayla=" + vayla + "]";
 	}
 
 	

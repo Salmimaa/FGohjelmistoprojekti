@@ -1,5 +1,6 @@
 package DAO;
 
+
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -51,5 +52,52 @@ public class Dao_Vayla extends Dao{
 	}
 	
 	
+	public ArrayList<Vayla> haeVaylat(int rataid) throws Exception{
+		ArrayList<Integer> vaylaidt = new ArrayList<Integer>();
+		ArrayList<Vayla> vaylat = new ArrayList<Vayla>();
+		sql = "select * from FG_Ratavaylat where Rata_id = ?"; 		
+		con=yhdista();
+		if(con!=null){ 
+			stmtPrep = con.prepareStatement(sql);
+			stmtPrep.setInt(1, rataid);
+    		rs = stmtPrep.executeQuery();
+   
+				while(rs.next()){
+				vaylaidt.add(rs.getInt("Vayla_id"));
+				}
+				
+		sql = "select * from FG_Vaylat where Vayla_id = ?"; 		
+		stmtPrep = con.prepareStatement(sql);
+		
+		for(int i = 0; i < vaylaidt.size(); i++) {
+			stmtPrep.setInt(1, (int) vaylaidt.get(i));
+			rs = stmtPrep.executeQuery();
+			if(rs.next()) {
+				Vayla vayla = new Vayla();
+				vayla.setVaylaId(rs.getInt("Vayla_id"));
+				vayla.setPar(rs.getInt("par"));
+				vaylat.add(vayla);
+			}
+		}
+			con.close();
+		}			
+		return vaylat;
+	}
 	
+	public Vayla haeVayla(int vaylaid) throws Exception {
+		Vayla vayla = new Vayla();
+		sql = "select * from FG_Vaylat where Vayla_id = ?"; 		
+		con=yhdista();
+		if(con!=null){ 
+			stmtPrep = con.prepareStatement(sql);
+			stmtPrep.setInt(1, vaylaid);
+    		rs = stmtPrep.executeQuery();
+    			while(rs.next()){
+				vayla.setVaylaId(vaylaid);
+				vayla.setPar(rs.getInt("Par"));
+				}
+		}
+		return vayla;
+	
+}
 }

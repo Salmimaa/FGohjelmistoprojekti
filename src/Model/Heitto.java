@@ -4,20 +4,20 @@ package Model;
 public class Heitto {
 	
 	private int heittoId, lkm;
-	private Osallistuja osallistujaId;
-	private Vayla vaylaId;
+	private Osallistuja osallistuja;
+	private Vayla vayla;
 	
 	public Heitto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Heitto(int heittoId, int lkm, Osallistuja osallistujaId, Vayla vaylaId) {
+	public Heitto(int heittoId, int lkm, Osallistuja osallistuja, Vayla vayla) {
 		super();
 		this.heittoId = heittoId;
 		this.lkm = lkm;
-		this.osallistujaId = osallistujaId;
-		this.vaylaId = vaylaId;
+		this.osallistuja = osallistuja;
+		this.vayla = vayla;
 	}
 
 	public int getHeittoId() {
@@ -36,26 +36,26 @@ public class Heitto {
 		this.lkm = lkm;
 	}
 
-	public Osallistuja getOsallistujaId() {
-		return osallistujaId;
+	public Osallistuja getOsallistuja() {
+		return osallistuja;
 	}
 
-	public void setOsallistujaId(Osallistuja osallistujaId) {
-		this.osallistujaId = osallistujaId;
+	public void setOsallistuja(Osallistuja osallistuja) {
+		this.osallistuja = osallistuja;
 	}
 
-	public Vayla getVaylaId() {
-		return vaylaId;
+	public Vayla getVayla() {
+		return vayla;
 	}
 
-	public void setVaylaId(Vayla vaylaId) {
-		this.vaylaId = vaylaId;
+	public void setVayla(Vayla vayla) {
+		this.vayla = vayla;
 	}
 
 	@Override
 	public String toString() {
-		return "Heitto [heittoId=" + heittoId + ", lkm=" + lkm + ", osallistujaId=" + osallistujaId + ", vaylaId="
-				+ vaylaId + "]";
+		return "Heitto [heittoId=" + heittoId + ", lkm=" + lkm + ", osallistuja=" + osallistuja + ", vayla="
+				+ vayla + "]";
 	}
 	
 	

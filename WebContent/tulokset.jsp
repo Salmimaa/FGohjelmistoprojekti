@@ -1,5 +1,6 @@
 <%@include file="header.jsp" %>
-<%@ page import="Model.Rata"%>  
+<%@ page import="Model.Rata"%> 
+<%@ page import="Model.Tulos"%>  
 <%@ page import="Model.Kisa"%> 
 <%@ page import="Model.Pelaaja"%> 
 <%@ page import="Model.Osallistuja"%>
@@ -30,6 +31,9 @@ Kisa kisa = new Kisa();
 kisa = (Kisa)request.getAttribute("kisa"); 
 Rata rata = new Rata();
 rata = kisa.getRata();
+ArrayList<Tulos> tulokset = new ArrayList<Tulos>();
+tulokset = (ArrayList<Tulos>)request.getAttribute("tulokset");
+
 %>
 	<legend>Kisa: <%out.print(kisa.getKisaNimi()+" "+kisa.getAika()+" "+rata.getRadanNimi());%></legend>
 	
@@ -42,37 +46,28 @@ rata = kisa.getRata();
 			<tr>
 				<th>Käyttäjä:</th>
 				<th>Nimi:</th>
-				<th></th>			
+				<th>Tulos:</th>			
 			</tr>
 		</thead>
 		<tbody>
 		<%
-		if(request.getAttribute("osallistujat")!=null){	
-			ArrayList<Osallistuja> osallistujat = (ArrayList<Osallistuja>)request.getAttribute("osallistujat");
 			
-			for(Osallistuja osa : osallistujat){
-				Pelaaja pelaaja = osa.getPelaaja();
+			for(Tulos tulos : tulokset){
+				Osallistuja osallistuja = tulos.getOsallistuja();
+				Pelaaja pelaaja = osallistuja.getPelaaja();
+				int tulo = tulos.getTulos();
 				out.print("\n<tr>");
 				out.print("<td class='pelaaja' id='"+pelaaja.getPelaajaId()+"'><u>" + pelaaja.getKayttajanimi() + "</u></td>");
 				out.print("<td>" + pelaaja.getEtunimi() +" "+ pelaaja.getSukunimi() +"</td>");
-				out.print("<td>");
-				out.print("</td>");
+				out.print("<td  id='"+osallistuja.getOsallistujaId()+"'><u>" + tulo + "</u></td>");
 				out.print("</tr>");
 			}	
-		}
-		
-		
+
 		%>
 		</tbody>
 	</table>
 	<a class="btn btn-primary text-white" href="Servlet_Osallistu?pelaaja=<%out.print(session.getAttribute("id"));%>&kisa=<% out.print(kisa.getKisaId()); %>">Osallistu</a>
-	<%
-	if(request.getParameter("ok")!=null){
-			if(request.getParameter("ok").equals("0")){
-				out.print("Olet jo kisassa!!");
-			}
-		}
-	%>
+
 </header>
 
 </body>
